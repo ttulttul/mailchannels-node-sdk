@@ -110,6 +110,28 @@ const { data, error } = await mailchannels.emails.send({
 })
 ```
 
+### Run the example script
+
+This repo also includes a runnable example at [playground/simulator/send.mjs](./playground/simulator/send.mjs) that points the SDK at the simulator, creates a DKIM key, sends a message, enrolls a webhook, and inspects webhook batches.
+
+In one terminal:
+
+```sh
+pnpm simulate:email-api
+```
+
+In another terminal:
+
+```sh
+pnpm example:simulator
+```
+
+You can override the target URL and API key if needed:
+
+```sh
+MAILCHANNELS_SIMULATOR_URL=http://127.0.0.1:8787 MAILCHANNELS_SIMULATOR_API_KEY=local-test-key MAILCHANNELS_SIMULATOR_WEBHOOK=http://127.0.0.1:9999/webhooks/mailchannels pnpm example:simulator
+```
+
 ### What the simulator supports today
 
 - Email sends and async sends
@@ -192,6 +214,9 @@ pnpm parity:fixtures
 
 # Run the local Email API simulator
 pnpm simulate:email-api
+
+# Run the simulator example script
+pnpm example:simulator
 
 # Release new version
 pnpm release
